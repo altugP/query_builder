@@ -1,0 +1,10 @@
+Concept,Keyword,Include in PubMed,Prefix in PubMed,Suffix in PubMed,Encapsulate in PubMed,Include in IEEE Xplore,Prefix in IEEE Xplore,Suffix in IEEE Xplore,Encapsulate in IEEE Xplore,Include in SpringerLink,Prefix in SpringerLink,Suffix in SpringerLink,Encapsulate in SpringerLink,Include in ACM Digital Library,Prefix in ACM Digital Library,Suffix in ACM Digital Library,Encapsulate in ACM Digital Library,Include in APA PsycNet,Prefix in APA PsycNet,Suffix in APA PsycNet,Encapsulate in APA PsycNet,Include in Web of Science CORE,Prefix in Web of Science CORE,Suffix in Web of Science CORE,Encapsulate in Web of Science CORE
+Core Concept 1,"""Test Word 1""",TRUE,,[All Fields],FALSE,TRUE,"(""All Metadata"":",),FALSE,TRUE,,,TRUE,TRUE,,,FALSE,TRUE,(Any Field:,),TRUE,TRUE,,,TRUE
+Core Concept 1,"""Test Word 2""",TRUE,,[All Fields],FALSE,TRUE,"(""All Metadata"":",),FALSE,TRUE,,,TRUE,TRUE,,,FALSE,TRUE,(Any Field:,),TRUE,TRUE,,,TRUE
+Core Concept 1,"""Test Word 3""",TRUE,,[All Fields],FALSE,TRUE,"(""All Metadata"":",),FALSE,TRUE,,,TRUE,TRUE,,,FALSE,TRUE,(Any Field:,),TRUE,TRUE,,,TRUE
+Core Concept 2,"""Test Word 4""",TRUE,,[All Fields],FALSE,TRUE,"(""All Metadata"":",),FALSE,TRUE,,,TRUE,TRUE,,,FALSE,TRUE,(Any Field:,),TRUE,TRUE,,,TRUE
+Core Concept 2,"""Test Word 5""",TRUE,,[All Fields],FALSE,TRUE,"(""All Metadata"":",),FALSE,TRUE,,,TRUE,TRUE,,,FALSE,TRUE,(Any Field:,),TRUE,TRUE,,,TRUE
+Core Concept 2,"""Test Word 6""",TRUE,,[All Fields],FALSE,TRUE,"(""All Metadata"":",),FALSE,TRUE,,,TRUE,TRUE,,,FALSE,TRUE,(Any Field:,),TRUE,TRUE,,,TRUE
+Core Concept 3,"""Test Word 7""",TRUE,,[All Fields],FALSE,TRUE,"(""All Metadata"":",),FALSE,TRUE,,,TRUE,TRUE,,,FALSE,TRUE,(Any Field:,),TRUE,TRUE,,,TRUE
+Core Concept 3,"""Test Word 8""",TRUE,,[All Fields],FALSE,TRUE,"(""All Metadata"":",),FALSE,TRUE,,,TRUE,TRUE,,,FALSE,TRUE,(Any Field:,),TRUE,TRUE,,,TRUE
+Core Concept 3,"""Test Word 8""",TRUE,,[All Fields],FALSE,TRUE,"(""All Metadata"":",),FALSE,TRUE,,,TRUE,TRUE,,,FALSE,TRUE,(Any Field:,),TRUE,TRUE,,,TRUE
