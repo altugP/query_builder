@@ -4,7 +4,8 @@ import os
 
 
 # region Setup -----------------------------------------------------------------
-num_cols_before: int = 2
+num_cols_before: int = 3  # "Concept", "Keyword", "Global Setting" as columns
+# "Include in DB", "Prefix in DB", "Suffix in DB", "Encapsulate in DB" as columns
 num_cols_per_db: int = 4
 keywords_file: str = 'keywords'  # script checks for .csv and .xlsx file endings
 output_file: str = 'queries.md'
@@ -12,6 +13,19 @@ output_file: str = 'queries.md'
 
 
 # region Functions -------------------------------------------------------------
+def apply_global_settings(df: pd.DataFrame) -> pd.DataFrame:
+  '''Applys the "Global Setting" column to set all rows to be included if the
+     value is "Enabled" and to be excluded if the value is "Disabled"'''
+  include_cols = [col for col in df.columns
+                  if col.startswith('Include in')]  # get all include col names
+  for idx, row in df.iterrows():
+    if row.iloc[num_cols_before - 1] == 'Enabled':
+      df.loc[idx, include_cols] = True
+    elif row.iloc[num_cols_before - 1] == 'Disabled':
+      df.loc[idx, include_cols] = False
+  return df
+
+
 def get_num_dbs(df: pd.DataFrame) -> int:
   '''Returns the number of databases in the given dataframe'''
   return (len(df.columns) - num_cols_before) // num_cols_per_db
@@ -87,6 +101,7 @@ This file was generated using Python. It shows the different search terms as (su
 # read input file and create dataframe
 try:
   data: pd.DataFrame = pd.read_csv(f'{keywords_file}.csv').fillna('')
+  data = apply_global_settings(data)
 except FileNotFoundError:
   if os.path.exists(f'{keywords_file}.xlsx'):
     data: pd.DataFrame = pd.read_excel(f'{keywords_file}.xlsx')
@@ -116,11 +131,12 @@ for db in range(len(idx)):
                                                    df.iloc[:, num_cols_before]
                                                    .to_list(),
                                                    join='OR')
-  query: str = create_query(list(db_data['sub_queries'].values()),
-                            False, df.iloc[:, num_cols_before].to_list(),
+  query: str = create_query(list(db_data['sub_queries'].values()), False,
+                            [True] * len(db_data['sub_queries'].values()),
                             join='AND')
   db_data['full_query'] = query
   queries_by_db[db] = db_data
+
 build_output(queries_by_db)
 print('Output file created')
 exit(0)
