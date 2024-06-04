@@ -1,14 +1,14 @@
-import pandas as pd
 import numpy as np
+import pandas as pd
 import os
+import datetime
 
 
 # region Setup -----------------------------------------------------------------
 num_cols_before: int = 3  # "Concept", "Keyword", "Global Setting" as columns
 # "Include in DB", "Prefix in DB", "Suffix in DB", "Encapsulate in DB" as columns
 num_cols_per_db: int = 4
-keywords_file: str = 'keywords'  # script checks for .csv and .xlsx file endings
-output_file: str = 'queries.md'
+keywords_file: str = 'keywords'  # script checks for .csv in input directory
 # endregion --------------------------------------------------------------------
 
 
@@ -92,7 +92,10 @@ This file was generated using Python. It shows the different search terms as (su
     for concept, sub_query in db['sub_queries'].items():
       content += f'''| {concept} | `{sub_query}` |
 '''
-  with open(output_file, 'w') as file:
+
+  now: str = datetime.datetime.now().strftime('%Y-%m-%dT%H-%M-%S')
+  output_file: str = f'{now}_queries.md'
+  with open(os.path.join('output', output_file), 'w') as file:
     file.write(content)
 # endregion --------------------------------------------------------------------
 
@@ -100,14 +103,12 @@ This file was generated using Python. It shows the different search terms as (su
 # region Main ------------------------------------------------------------------
 # read input file and create dataframe
 try:
-  data: pd.DataFrame = pd.read_csv(f'{keywords_file}.csv').fillna('')
+  fname: str = f'{keywords_file}.csv'
+  data: pd.DataFrame = pd.read_csv(os.path.join('input', fname)).fillna('')
   data = apply_global_settings(data)
 except FileNotFoundError:
-  if os.path.exists(f'{keywords_file}.xlsx'):
-    data: pd.DataFrame = pd.read_excel(f'{keywords_file}.xlsx')
-  else:
-    print('No keywords file found')
-    exit(1)
+  print('No keywords file found')
+  exit(1)
 
 # list for resulting queries
 queries_by_db: list = [[] for _ in range(get_num_dbs(data))]
@@ -140,4 +141,5 @@ for db in range(len(idx)):
 build_output(queries_by_db)
 print('Output file created')
 exit(0)
+
 # endregion --------------------------------------------------------------------
